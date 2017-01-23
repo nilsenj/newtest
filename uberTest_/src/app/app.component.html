@@ -1,0 +1,13 @@
+<div id="wrapper">
+  <div class="overlay"></div>
+  <app-navigaion [user]="user" [authenticated]="authenticated"></app-navigaion>
+  <!-- Page Content -->
+  <div id="page-content-wrapper" class="container-fluid">
+    <!--<app-sidebar></app-sidebar>-->
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<!-- /#page-content-wrapper -->
+<app-footer></app-footer>
+
+<!-- /#wrapper -->

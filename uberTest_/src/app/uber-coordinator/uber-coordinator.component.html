@@ -1,0 +1,64 @@
+<div class="container">
+  <p>
+    afterUber saves you 20% of money!
+  </p>
+  <div class="row">
+    <form name="form" class="form-address" role="form" (ngSubmit)="f.form.valid && getCoordinates()" #f="ngForm"
+          novalidate>
+      <div class="col-md-5">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+          <label for="address">Start Address</label>
+          <input type="text" class="form-control pull-left"
+                 style="margin-right: 1px; border: 1px solid #ddd; background-color: #e5e5e5;" name="address"
+                 placeholder="Start address" [(ngModel)]="model.address" #name="ngModel" id="address" required/>
+          <div *ngIf="f.submitted && !name.valid" class="help-block">Address is required</div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !destination.valid }">
+          <label for="destination">Destination Address</label>
+          <input type="text" class="form-control pull-left"
+                 style="margin-right: 1px; border: 1px solid #ddd; background-color: #e5e5e5;"
+                 placeholder="Destination address" name="destination" [(ngModel)]="model.destination" id="destination"
+                 #name="ngModel"
+                 required/>
+          <div *ngIf="f.submitted && !name.valid" class="help-block">Destination is required</div>
+        </div>
+      </div>
+      <div class="col-md-2">
+
+      <div class="form-group">
+        <button [disabled]="loading" class="btn btn-default btn-search">Search</button>
+        <img *ngIf="loading"
+             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+      </div>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+</div>
+<div class="container">
+  <div class="row" *ngIf="uberReady">
+    <div class="col-md-6 mapCoords">
+      <sebm-google-map [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" [latitude]="address.latitude"
+                       [longitude]="address.longitude">
+        <sebm-google-map-marker [label]="'A'" [latitude]="address.latitude"
+                                [longitude]="address.longitude"></sebm-google-map-marker>
+        <sebm-google-map-marker [label]="'B'" [latitude]="destination.latitude"
+                                [longitude]="destination.longitude"></sebm-google-map-marker>
+      </sebm-google-map>
+    </div>
+    <div class="col-md-6">
+      <ul>
+        <li class="row columnCaptions">
+          <span class="col-md-8">ITEM</span>
+          <span class="col-md-4">Price</span>
+        </li>
+        <li class="row" *ngFor="let item of proposals; let i = index; trackBy:reformat">
+          <span class="itemName col-8"><small class="text-muted">company name:</small> {{item.newName}}</span>
+          <span class="price"><small class="text-muted">price:</small> {{item.newPrice}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

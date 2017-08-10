@@ -3,7 +3,9 @@
 import { User } from '../_models';
 import { UserService } from '../_services/index';
 import { arrays } from '../_helpers/arrays';
+
 @Component({
+    selector: 'app-home',
     templateUrl: '../home/home.component.html'
 })
 

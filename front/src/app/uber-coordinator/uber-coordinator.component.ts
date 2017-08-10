@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GeolocationService} from "../_services/geolocation.service";
+import {GeolocationService} from '../_services/geolocation.service';
 import {CoordinatorService} from "../_services/coordinator.service";
 import {Router} from "@angular/router";
 import {UberProposalsService} from "../_services/uber-proposals.service";
@@ -23,7 +23,7 @@ export class UberCoordinatorComponent implements OnInit {
     latitude: 51,
     longitude: 7.209007
   };
-  zoom: number = 9;
+  zoom: Number = 9;
 
   location = {};
   model: any = {};

@@ -27,7 +27,7 @@
         "psr-4": {
             "App\\": "app/",
             "App\\UberCore\\": "app/UberCore/",
-            "nilsenj\\Uber\\": "packages/uber-sdk/src/UberSDK/"
+            "nilsenj\\Uber\\": "packages/uber/src/UberSDK/"
         }
     },
     "autoload-dev": {

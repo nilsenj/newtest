@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map'
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 import {Coordinate} from "../_models/cooridinate";
 
 @Injectable()
@@ -23,7 +23,7 @@ export class CoordinatorService {
     let headers = new Headers({ 'Authorization': 'Bearer ' + this.token });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post('http://ubertestback.io/api/coordinates', JSON.stringify({ address: address, destination: destination}), options)
+    return this.http.post('http://127.0.0.1:8000/api/coordinates', JSON.stringify({ address: address, destination: destination}), options)
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
         let coordinates = response.json();

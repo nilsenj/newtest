@@ -10,7 +10,7 @@ import {UserBase} from './abstracts/user.base';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent extends UserBase {
+export class AppComponent extends UserBase implements OnInit {
 
   constructor(protected userService: UserService) {
     super(userService);
